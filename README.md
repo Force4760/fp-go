@@ -208,7 +208,7 @@ Compose2(fp.Filter(isPositive), fp.Map(sumTwo))([]int{1, 2, 3, -1})
 
 Performs left-to-right function composition.
 
-Variations `Pipe2`, `Pipe3` and `Pipe4` stating the number of functions you are going to compose.
+Variations `Pipe2`, to `Pipe16` stating the number of functions you are going to compose.
 
 ```go
 func isPositive(x int) bool {
