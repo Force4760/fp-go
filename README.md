@@ -188,7 +188,7 @@ fp.Some(func(x int) bool { return x < 0 })([]int{1, 2, 3})
 
 Performs right-to-left function composition.
 
-Variations `Compose2`, `Compose3` and `Compose4` stating the number of functions you are going to compose.
+Variations `Compose2` to `Compose16` stating the number of functions you are going to compose.
 
 ```go
 func isPositive(x int) bool {
