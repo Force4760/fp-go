@@ -44,7 +44,7 @@ func TakeWhileWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
 	}
 }
 
-// See Filter but callback receives index of element and the whole array.
+// See TakeWhile but callback receives index of element and the whole array.
 func TakeWhileWithSlice[T any](predicate func(T, int, []T) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0

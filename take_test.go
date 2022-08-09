@@ -31,21 +31,21 @@ func TestTakeWhile(t *testing.T) {
 	res := TakeWhile(func(x int) bool { return x < 4 })([]int{1, 2, 3, 4, 5})
 	want := []int{1, 2, 3}
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhile should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhile_All(t *testing.T) {
 	res := TakeWhile(func(x int) bool { return x < 10 })([]int{1, 2, 3, 4, 5})
 	want := []int{1, 2, 3, 4, 5}
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhile should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhile_None(t *testing.T) {
 	res := TakeWhile(func(x int) bool { return x > 10 })([]int{1, 2, 3, 4, 5})
 	want := []int{}
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhile should have returned", want, ". Received:", res)
 	}
 }
 
@@ -57,7 +57,7 @@ func TestTakeWhileWithIndex(t *testing.T) {
 	want := []int{1, 2}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhileWithIndex_All(t *testing.T) {
@@ -68,7 +68,7 @@ func TestTakeWhileWithIndex_All(t *testing.T) {
 	want := []int{1, 2, 3, 4, 5}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhileWithIndex_None(t *testing.T) {
@@ -79,7 +79,7 @@ func TestTakeWhileWithIndex_None(t *testing.T) {
 	want := []int{}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
 
@@ -91,7 +91,7 @@ func TestTakeWhileWithSlice(t *testing.T) {
 	want := []int{1, 2}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhileWithSlice_All(t *testing.T) {
@@ -102,7 +102,7 @@ func TestTakeWhileWithSlice_All(t *testing.T) {
 	want := []int{1, 2, 3, 4, 5}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
 func TestTakeWhileWithSlice_None(t *testing.T) {
@@ -113,6 +113,6 @@ func TestTakeWhileWithSlice_None(t *testing.T) {
 	want := []int{}
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("Take should have returned", want, ". Received:", res)
+		t.Error("TakeWhileWithIndex should have returned", want, ". Received:", res)
 	}
 }
