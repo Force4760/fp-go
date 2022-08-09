@@ -38,3 +38,44 @@ func Init[T any](xs []T) []T {
 
 	return xs[:length-1]
 }
+
+// Check if a slice has no elements.
+func IsNull[T any](xs []T) bool {
+	return len(xs) == 0
+}
+
+// Check if all elements of a boolean slice are true.
+func And(xs []bool) bool {
+	return Every(Id[bool])(xs)
+}
+
+// Check if any element of a boolean slice is true.
+func Or(xs []bool) bool {
+	return Some(Id[bool])(xs)
+}
+
+// Check if a value is an element of a slice
+func Elem[T comparable](e T) func(xs []T) bool {
+	return Some(func(a T) bool { return a == e })
+}
+
+// Get the sum of all values of a slice
+func Sum[T Num](xs []T) T {
+	return Reduce(func(a, b T) T { return a + b }, 0)(xs)
+}
+
+// Get the product of all values of a slice
+func Prod[T Num](xs []T) T {
+	return Reduce(func(a, b T) T { return a * b }, 1)(xs)
+}
+
+// Get a slice with n elements equal to val
+func Replicate[T any](n int) func(T) []T {
+	return func(val T) (res []T) {
+		for i := 0; i < n; i++ {
+			res = append(res, val)
+		}
+
+		return
+	}
+}
