@@ -81,13 +81,13 @@ func TestIsNone_None(t *testing.T) {
 }
 
 func TestGetOrElse_Some(t *testing.T) {
-	res := GetOrElse(func() string { return "fail" })(Some("val"))
+	res := GetOrElse("fail")(Some("val"))
 	if res != "val" {
 		t.Error("GetOrElse should return the Some value. Received:", res)
 	}
 }
 func TestGetOrElse_None(t *testing.T) {
-	res := GetOrElse(func() string { return "elseValue" })(None[string]())
+	res := GetOrElse("elseValue")(None[string]())
 	if res != "elseValue" {
 		t.Error("GetOrElse should return the onNone() value. Received:", res)
 	}
