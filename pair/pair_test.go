@@ -178,3 +178,12 @@ func TestEq_False_False(t *testing.T) {
 		t.Error("Eq should return false. Received:", res)
 	}
 }
+
+func TestString(t *testing.T) {
+	res := String(New(42, true))
+	want := "(42, true)"
+
+	if res != want {
+		t.Error("String should have returned", want, ". Received:", res)
+	}
+}

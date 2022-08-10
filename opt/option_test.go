@@ -219,3 +219,18 @@ func TestEq_Some_Some_Equal(t *testing.T) {
 		t.Error("Eq should have returned true. Received:", res)
 	}
 }
+
+func TestString_Some(t *testing.T) {
+	res := String(Some(42))
+	want := "Some(42)"
+	if res != want {
+		t.Error("String should have returned", want, ". Received:", res)
+	}
+}
+func TestString_None(t *testing.T) {
+	res := String(None[int]())
+	want := "None()"
+	if res != want {
+		t.Error("String should have returned", want, ". Received:", res)
+	}
+}
