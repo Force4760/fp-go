@@ -5,7 +5,7 @@ import "github.com/repeale/fp-go/pair"
 // Get a Pair of arrays, where the first is the longest prefix of the provided array
 // that satisfies a callback and the second is the rest of the array.
 //
-// span p <=> (takeWhile p, dropWhile p)
+// span p xs <=> (takeWhile p xs, dropWhile p xs)
 func Span[T any](pred func(T) bool) func([]T) pair.Pair[[]T, []T] {
 	return func(xs []T) pair.Pair[[]T, []T] {
 		n := 0

@@ -103,8 +103,8 @@ fp.MapWithSlice[int, string](func(x int, i int, xs: []int) { ... })
 - [ ] Result
 - [ ] Ranges
 - [X] Split at
-- [ ] Span (takeWhile p, dropWhile p)
-- [ ] Partition (filter p, filter $ not . p)
+- [X] Span (takeWhile p, dropWhile p)
+- [X] Partition (filter p, filter $ not . p)
 - [X] Concat
 - [X] ZipWith
 - [X] Zip

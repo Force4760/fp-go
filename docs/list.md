@@ -22,7 +22,7 @@
 - [Replicate](#replicate)
 - [SplitAt](#splitat)
 - [Span](#span)
-- [Partition] (#elem)
+- [Partition](#partition)
 - [Concat](#concat)
 - [Zip](#zip)
 - [Unzip](#unzip)
@@ -271,6 +271,22 @@ Span(p)(xs)  <=>  (TakeWhile(p)(xs), DropWhile(p)(xs))
 fp.Span(func (x int) bool { return x < 4 })([]int{1, 2, 3, 4, 5})
 
 // => ([]int{1, 2, 3}, []int{4, 5})
+```
+
+## Partition
+
+Returns a Pair of arrays where the first has all the elements that satisfy a predicate and the second has all the elements that don't satisty it.
+
+Variations `PartitionWithIndex` and `PartitionWithSlice`
+
+```go
+Partition(p)(xs)  <=>  (Filter(p)(xs), Filter(!p)(xs))
+```
+
+```go
+fp.Partition(func (x int) bool { return x >= 4 })([]int{1, 2, 3, 4, 5})
+
+// => ([]int{4, 5}, []int{1, 2, 3})
 ```
 
 ## Concat

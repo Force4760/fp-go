@@ -77,7 +77,7 @@ func TestSpanWithSlice(t *testing.T) {
 	want := pair.New([]int{1, 2}, []int{3, 4, 5})
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("SpanWithIndex should have returned", want, ". Received:", res)
+		t.Error("SpanWithSlice should have returned", want, ". Received:", res)
 	}
 }
 func TestSpanWithSlice_All(t *testing.T) {
@@ -88,7 +88,7 @@ func TestSpanWithSlice_All(t *testing.T) {
 	want := pair.New([]int{1, 2, 3, 4, 5}, []int{})
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("SpanWithIndex should have returned", want, ". Received:", res)
+		t.Error("SpanWithSlice should have returned", want, ". Received:", res)
 	}
 }
 func TestSpanWithSlice_None(t *testing.T) {
@@ -99,6 +99,6 @@ func TestSpanWithSlice_None(t *testing.T) {
 	want := pair.New([]int{}, []int{1, 2, 3, 4, 5})
 
 	if reflect.DeepEqual(res, want) != true {
-		t.Error("SpanWithIndex should have returned", want, ". Received:", res)
+		t.Error("SpanWithSlice should have returned", want, ". Received:", res)
 	}
 }
