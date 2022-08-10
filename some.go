@@ -1,11 +1,11 @@
 package fp
 
 // Determines whether the specified callback function returns true for any element of an array.
-func Some[T any](predicate func(T) bool) func([]T) bool {
+func Some[T any](pred func(T) bool) func([]T) bool {
 	return func(xs []T) bool {
 
 		for _, x := range xs {
-			if predicate(x) {
+			if pred(x) {
 				return true
 			}
 		}
@@ -15,11 +15,11 @@ func Some[T any](predicate func(T) bool) func([]T) bool {
 }
 
 // See Some but callback receives index of element.
-func SomeWithIndex[T any](predicate func(T, int) bool) func([]T) bool {
+func SomeWithIndex[T any](pred func(T, int) bool) func([]T) bool {
 	return func(xs []T) bool {
 
 		for i, x := range xs {
-			if predicate(x, i) {
+			if pred(x, i) {
 				return true
 			}
 		}
@@ -29,11 +29,11 @@ func SomeWithIndex[T any](predicate func(T, int) bool) func([]T) bool {
 }
 
 // Like Some but callback receives index of element and the whole array.
-func SomeWithSlice[T any](predicate func(T, int, []T) bool) func([]T) bool {
+func SomeWithSlice[T any](pred func(T, int, []T) bool) func([]T) bool {
 	return func(xs []T) bool {
 
 		for i, x := range xs {
-			if predicate(x, i, xs) {
+			if pred(x, i, xs) {
 				return true
 			}
 		}

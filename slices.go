@@ -1,5 +1,7 @@
 package fp
 
+import opt "github.com/repeale/fp-go/option"
+
 // ( head )(---- tail -- )
 // [ 1,    2,    3,    4 ]
 // ( --- init --- )( last )
@@ -8,6 +10,16 @@ package fp
 // Panics if the list is empty.
 func Head[T any](xs []T) T {
 	return xs[0]
+}
+
+// Get the head of the slice (the first element).
+// Returns None if the slice is empty.
+func SafeHead[T any](xs []T) opt.Option[T] {
+	if IsNull(xs) {
+		return opt.None[T]()
+	}
+
+	return opt.Some(xs[0])
 }
 
 // Get the tail of the slice (everything but the first element)
@@ -24,6 +36,16 @@ func Tail[T any](xs []T) []T {
 // Panics if the list is empty.
 func Last[T any](xs []T) T {
 	return xs[len(xs)-1]
+}
+
+// Get the last element of slice as an Option.
+// Returns None if the slice is empty.
+func SafeLast[T any](xs []T) opt.Option[T] {
+	if IsNull(xs) {
+		return opt.None[T]()
+	}
+
+	return opt.Some(xs[len(xs)-1])
 }
 
 // Get the init of the slice (everything but the last)
@@ -71,11 +93,13 @@ func Prod[T Num](xs []T) T {
 
 // Get a slice with n elements equal to val
 func Replicate[T any](n int) func(T) []T {
-	return func(val T) (res []T) {
+	return func(val T) []T {
+		result := make([]T, n)
+
 		for i := 0; i < n; i++ {
-			res = append(res, val)
+			result = append(result, val)
 		}
 
-		return
+		return result
 	}
 }

@@ -1,13 +1,13 @@
 package fp
 
 // Returns the elements of an array that meet the condition specified in a callback function.
-func Filter[T any](predicate func(T) bool) func([]T) []T {
+func Filter[T any](pred func(T) bool) func([]T) []T {
 	return func(xs []T) []T {
 
 		result := []T{}
 
 		for _, x := range xs {
-			if predicate(x) {
+			if pred(x) {
 				result = append(result, x)
 			}
 		}
@@ -17,13 +17,13 @@ func Filter[T any](predicate func(T) bool) func([]T) []T {
 }
 
 // See Filter but callback receives index of element.
-func FilterWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
+func FilterWithIndex[T any](pred func(T, int) bool) func([]T) []T {
 	return func(xs []T) []T {
 
 		result := []T{}
 
 		for i, x := range xs {
-			if predicate(x, i) {
+			if pred(x, i) {
 				result = append(result, x)
 			}
 		}
@@ -33,13 +33,13 @@ func FilterWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
 }
 
 // Like Filter but callback receives index of element and the whole array.
-func FilterWithSlice[T any](predicate func(T, int, []T) bool) func([]T) []T {
+func FilterWithSlice[T any](pred func(T, int, []T) bool) func([]T) []T {
 	return func(xs []T) []T {
 
 		result := []T{}
 
 		for i, x := range xs {
-			if predicate(x, i, xs) {
+			if pred(x, i, xs) {
 				result = append(result, x)
 			}
 		}

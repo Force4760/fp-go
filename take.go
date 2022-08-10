@@ -13,12 +13,12 @@ func Take[T any](n int) func([]T) []T {
 }
 
 // Take the elements of an array while it meet the condition specified in a callback function.
-func TakeWhile[T any](predicate func(T) bool) func([]T) []T {
+func TakeWhile[T any](pred func(T) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for _, x := range xs {
-			if !predicate(x) {
+			if !pred(x) {
 				return xs[:n]
 			}
 			n++
@@ -29,12 +29,12 @@ func TakeWhile[T any](predicate func(T) bool) func([]T) []T {
 }
 
 // See TakeWhile but callback receives index of element.
-func TakeWhileWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
+func TakeWhileWithIndex[T any](pred func(T, int) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for i, x := range xs {
-			if !predicate(x, i) {
+			if !pred(x, i) {
 				return xs[:n]
 			}
 			n++
@@ -45,12 +45,12 @@ func TakeWhileWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
 }
 
 // See TakeWhile but callback receives index of element and the whole array.
-func TakeWhileWithSlice[T any](predicate func(T, int, []T) bool) func([]T) []T {
+func TakeWhileWithSlice[T any](pred func(T, int, []T) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for i, x := range xs {
-			if !predicate(x, i, xs) {
+			if !pred(x, i, xs) {
 				return xs[:n]
 			}
 			n++

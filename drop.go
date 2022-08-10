@@ -13,12 +13,12 @@ func Drop[T any](n int) func([]T) []T {
 }
 
 // Remove elements of an array while they meet the condition specified in a callback function.
-func DropWhile[T any](predicate func(T) bool) func([]T) []T {
+func DropWhile[T any](pred func(T) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for _, x := range xs {
-			if !predicate(x) {
+			if !pred(x) {
 				return xs[n:]
 			}
 			n++
@@ -29,12 +29,12 @@ func DropWhile[T any](predicate func(T) bool) func([]T) []T {
 }
 
 // See DropWhile but callback receives index of element.
-func DropWhileWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
+func DropWhileWithIndex[T any](pred func(T, int) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for i, x := range xs {
-			if !predicate(x, i) {
+			if !pred(x, i) {
 				return xs[n:]
 			}
 			n++
@@ -45,12 +45,12 @@ func DropWhileWithIndex[T any](predicate func(T, int) bool) func([]T) []T {
 }
 
 // See DropWhile but callback receives index of element and the whole array.
-func DropWhileWithSlice[T any](predicate func(T, int, []T) bool) func([]T) []T {
+func DropWhileWithSlice[T any](pred func(T, int, []T) bool) func([]T) []T {
 	return func(xs []T) []T {
 		n := 0
 
 		for i, x := range xs {
-			if !predicate(x, i, xs) {
+			if !pred(x, i, xs) {
 				return xs[n:]
 			}
 			n++
