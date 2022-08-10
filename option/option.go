@@ -124,3 +124,18 @@ func Flat[T any](o Option[Option[T]]) Option[T] {
 
 	return o.value
 }
+
+// Removes one level of nesting at a time. Option[Option[T]] -> Option[T]
+func Eq[T comparable](o1 Option[T]) func(Option[T]) bool {
+	return func(o2 Option[T]) bool {
+		if IsNone(o1) {
+			return IsNone(o2)
+		}
+
+		if IsNone(o2) {
+			return false
+		}
+
+		return o1.value == o2.value
+	}
+}

@@ -3,6 +3,8 @@ package fp
 import (
 	"reflect"
 	"testing"
+
+	opt "github.com/repeale/fp-go/option"
 )
 
 func TestHead(t *testing.T) {
@@ -200,5 +202,43 @@ func TestReplicate(t *testing.T) {
 	want := []int{1, 1, 1, 1, 1}
 	if reflect.DeepEqual(res, want) != true {
 		t.Error("Replicate should have returned", want, ". Received:", res)
+	}
+}
+
+func TestSafeHead(t *testing.T) {
+	res := SafeHead([]int{1, 2})
+	if !opt.Eq(res)(opt.Some(1)) {
+		t.Error("SafeHead should have returned the first element of the slice as Some(1). Received:", res)
+	}
+}
+func TestSafeHead_Single(t *testing.T) {
+	res := SafeHead([]int{1, 2})
+	if !opt.Eq(res)(opt.Some(1)) {
+		t.Error("SafeHead should have returned the first element of the slice as Some(1). Received:", res)
+	}
+}
+func TestSafeHead_Empty(t *testing.T) {
+	res := SafeHead([]int{})
+	if !opt.Eq(res)(opt.None[int]()) {
+		t.Error("SafeHead should have returned None. Received:", res)
+	}
+}
+
+func TestSafeLast(t *testing.T) {
+	res := SafeLast([]int{1, 2})
+	if !opt.Eq(res)(opt.Some(2)) {
+		t.Error("SafeLast should have returned the last element of the slice as Some(1). Received:", res)
+	}
+}
+func TestSafeLast_Single(t *testing.T) {
+	res := SafeLast([]int{1})
+	if !opt.Eq(res)(opt.Some(1)) {
+		t.Error("SafeHead should have returned the last element of the slice as Some(1). Received:", res)
+	}
+}
+func TestSafeLast_Empty(t *testing.T) {
+	res := SafeLast([]int{})
+	if !opt.Eq(res)(opt.None[int]()) {
+		t.Error("SafeLast should have returned None. Received:", res)
 	}
 }

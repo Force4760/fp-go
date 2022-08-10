@@ -188,3 +188,34 @@ func TestFlat_None(t *testing.T) {
 		t.Error("Flat should return a struct with hasValue set to false. Received:", res.value)
 	}
 }
+
+func TestEq_None_Some(t *testing.T) {
+	res := Eq(None[int]())(Some(42))
+	if res != false {
+		t.Error("Eq should have returned false. Received:", res)
+	}
+}
+func TestEq_Some_None(t *testing.T) {
+	res := Eq(Some(42))(None[int]())
+	if res != false {
+		t.Error("Eq should have returned false. Received:", res)
+	}
+}
+func TestEq_None_None(t *testing.T) {
+	res := Eq(None[int]())(None[int]())
+	if res != true {
+		t.Error("Eq should have returned true. Received:", res)
+	}
+}
+func TestEq_Some_Some_Different(t *testing.T) {
+	res := Eq(Some(42))(Some(21))
+	if res != false {
+		t.Error("Eq should have returned false. Received:", res)
+	}
+}
+func TestEq_Some_Some_Equal(t *testing.T) {
+	res := Eq(Some(42))(Some(42))
+	if res != true {
+		t.Error("Eq should have returned true. Received:", res)
+	}
+}
