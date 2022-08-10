@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Returns a new array with all sub-array elements concatenated into it recursively up to the specified depth.
 func Flat[T any](xs [][]T) []T {

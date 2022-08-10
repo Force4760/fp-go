@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Determines whether the specified callback function returns true for any element of an array.
 func Some[T any](pred func(T) bool) func([]T) bool {

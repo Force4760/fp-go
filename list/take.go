@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Take a slice of n elements from the original slice.
 // If there are less than n elements, the original slice will be returned

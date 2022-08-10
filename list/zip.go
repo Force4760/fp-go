@@ -1,4 +1,4 @@
-package fp
+package lst
 
 import "github.com/repeale/fp-go/pair"
 

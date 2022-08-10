@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Determines whether all the members of an array satisfy the specified test.
 func Every[T any](pred func(T) bool) func([]T) bool {

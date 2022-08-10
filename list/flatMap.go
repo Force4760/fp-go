@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Calls a defined callback function on each element of an array. Then, flattens the result into a new array. This is identical to a map followed by flat with depth 1.
 func FlatMap[T any, R any](fn func(T) []R) func([]T) []R {

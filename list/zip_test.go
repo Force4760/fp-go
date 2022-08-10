@@ -1,9 +1,10 @@
-package fp
+package lst
 
 import (
 	"reflect"
 	"testing"
 
+	"github.com/repeale/fp-go"
 	"github.com/repeale/fp-go/pair"
 )
 
@@ -31,7 +32,7 @@ func TestZip_Large_Snd(t *testing.T) {
 
 func TestZipWith_EqLen(t *testing.T) {
 	res := ZipWith(
-		func(a int, b bool) int { return If(b, a+1, a-1) },
+		func(a int, b bool) int { return fp.If(b, a+1, a-1) },
 	)([]int{1, 2, 3, 4, 5})([]bool{true, true, false, false, true})
 
 	want := []int{2, 3, 2, 3, 6}
@@ -42,7 +43,7 @@ func TestZipWith_EqLen(t *testing.T) {
 }
 func TestZipWith_Large_Fst(t *testing.T) {
 	res := ZipWith(
-		func(a int, b bool) int { return If(b, a+1, a-1) },
+		func(a int, b bool) int { return fp.If(b, a+1, a-1) },
 	)([]int{1, 2, 3, 4, 5})([]bool{true, true, false})
 
 	want := []int{2, 3, 2}
@@ -53,7 +54,7 @@ func TestZipWith_Large_Fst(t *testing.T) {
 }
 func TestZipWith_Large_Snd(t *testing.T) {
 	res := ZipWith(
-		func(a int, b bool) int { return If(b, a+1, a-1) },
+		func(a int, b bool) int { return fp.If(b, a+1, a-1) },
 	)([]int{1, 2, 3})([]bool{true, true, false, false, true})
 
 	want := []int{2, 3, 2}

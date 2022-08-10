@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Returns the elements of an array that meet the condition specified in a callback function.
 func Filter[T any](pred func(T) bool) func([]T) []T {

@@ -1,6 +1,7 @@
-package fp
+package lst
 
 import (
+	"github.com/repeale/fp-go"
 	opt "github.com/repeale/fp-go/option"
 	"github.com/repeale/fp-go/pair"
 )
@@ -71,12 +72,12 @@ func IsNull[T any](xs []T) bool {
 
 // Check if all elements of a boolean slice are true.
 func And(xs []bool) bool {
-	return Every(Id[bool])(xs)
+	return Every(fp.Id[bool])(xs)
 }
 
 // Check if any element of a boolean slice is true.
 func Or(xs []bool) bool {
-	return Some(Id[bool])(xs)
+	return Some(fp.Id[bool])(xs)
 }
 
 // Check if a value is an element of a slice
@@ -85,12 +86,12 @@ func Elem[T comparable](e T) func(xs []T) bool {
 }
 
 // Get the sum of all values of a slice
-func Sum[T Num](xs []T) T {
+func Sum[T fp.Num](xs []T) T {
 	return Reduce(func(a, b T) T { return a + b }, 0)(xs)
 }
 
 // Get the product of all values of a slice
-func Prod[T Num](xs []T) T {
+func Prod[T fp.Num](xs []T) T {
 	return Reduce(func(a, b T) T { return a * b }, 1)(xs)
 }
 

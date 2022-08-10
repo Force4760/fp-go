@@ -1,66 +1,36 @@
 package fp
 
 import (
-	"reflect"
 	"testing"
 )
 
 func TestPipe2_Example(t *testing.T) {
-	res := Pipe2(
-		Filter(func(x int) bool { return x > 0 }),
-		Map(func(x int) int { return x + 2 }))([]int{1, 2, 3, -1})
-	expected := []int{3, 4, 5}
-
-	if reflect.DeepEqual(res, expected) == false {
-		t.Error("Should perform left-to-right function composition of two functions. Received:", res)
+	fn0 := func(x int) int { return x + 1 }
+	fn1 := func(x int) int { return x * 2 }
+	res := Pipe2(fn0, fn1)(0)
+	if res != 2 {
+		t.Error("Should perform left-to-right function composition of 2 functions. Received:", res)
 	}
 }
 
 func TestPipe3_Example(t *testing.T) {
-	res := Pipe3(
-		Filter(func(x int) bool { return x > 0 }),
-		Map(func(x int) int { return x + 2 }),
-		Map(func(x int) int { return x + 2 }))([]int{1, 2, 3, -1})
-	expected := []int{5, 6, 7}
-
-	if reflect.DeepEqual(res, expected) == false {
-		t.Error("Should perform left-to-right function composition of two functions. Received:", res)
+	fn0 := func(x int) int { return x + 1 }
+	fn1 := func(x int) int { return x * 2 }
+	res := Pipe3(fn0, fn1, fn0)(0)
+	if res != 3 {
+		t.Error("Should perform left-to-right function composition of 3 functions. Received:", res)
 	}
 }
 
 func TestPipe4_Example(t *testing.T) {
-	res := Pipe4(
-		Filter(func(x int) bool { return x > 0 }),
-		Map(func(x int) int { return x + 2 }),
-		Map(func(x int) int { return x + 2 }),
-		Map(func(x int) int { return x + 2 }))([]int{1, 2, 3, -1})
-	expected := []int{7, 8, 9}
-
-	if reflect.DeepEqual(res, expected) == false {
-		t.Error("Should perform left-to-right function composition of two functions. Received:", res)
+	fn0 := func(x int) int { return x + 1 }
+	fn1 := func(x int) int { return x * 2 }
+	res := Pipe4(fn0, fn1, fn0, fn1)(0)
+	if res != 6 {
+		t.Error("Should perform left-to-right function composition of 4 functions. Received:", res)
 	}
 }
 
-/* Generated with the following python code
-def pipe_test(n: int) -> str:
-	fns = ", ".join(f"fn{i % 2}" for i in range(n))
-
-	expect = 0
-	for i in range(n):
-		if i % 2 == 0:
-			expect += 1
-		else:
-			expect *= 2
-
-    return f"""func TestPipe{n}_Example(t *testing.T) {{
-    fn0 := func(x int) int {{ return x + 1 }}
-	fn1 := func(x int) int {{ return x * 2 }}
-    res := Pipe{n}({fns})(0)
-    if res != {expect} {{
-        t.Error("Should perform left-to-right function composition of {n} functions. Received:", res)
-    }}
-}}"""
-*/
 func TestPipe5_Example(t *testing.T) {
 	fn0 := func(x int) int { return x + 1 }
 	fn1 := func(x int) int { return x * 2 }

@@ -1,4 +1,4 @@
-package fp
+package lst
 
 // Get a slice with n elements removed from the original slice.
 // If there are less than n elements, the empty slice will be returned
