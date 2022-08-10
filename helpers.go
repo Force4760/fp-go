@@ -14,3 +14,12 @@ type Ord interface {
 
 // Function that returns the value it gets
 func Id[T any](x T) T { return x }
+
+// Ternary operator implementation
+func If[T any](cond bool, onTrue, onFalse T) T {
+	if cond {
+		return onTrue
+	}
+
+	return onFalse
+}
