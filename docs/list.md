@@ -20,14 +20,13 @@
 - [Sum](#sum)
 - [Prod](#prod)
 - [Replicate](#replicate)
-
-- [SplitAt] (#splitat)
-- [Span] (#span)
+- [SplitAt](#splitat)
+- [Span](#span)
 - [Partition] (#elem)
-- [Concat] (#sum)
-- [ZipWith] (#zipwith)
-- [Zip] (#zip)
-- [Unzip] (#unzip)
+- [Concat](#concat)
+- [Zip](#zip)
+- [Unzip](#unzip)
+- [ZipWith](#zipwith)
 
 
 ## Every
@@ -242,4 +241,76 @@ Create an array with a given value repeated n times
 fp.Replicate[bool](5)(true)
 
 // => []bool{true, true, true, true, true}
+```
+
+## SplitAt
+
+Returns a Pair of arrays where the first element is a prefix of length n and second element is the remainder of the list
+
+```go
+SplitAt(n)(xs)  <=>  (Take(n)(xs), Drop(n)(xs))
+```
+
+```go
+fp.SplitAt[int](2)([]int{1, 2, 3, 4, 5})
+
+// => ([]int{1, 2}, []int{3, 4, 5})
+```
+
+## Span
+
+Returns a Pair of arrays where the first element is longest prefix of elements that satisfy a predicate and the second element is the remainder of the array
+
+Variations `SpanWithIndex` and `SpanWithSlice`
+
+```go
+Span(p)(xs)  <=>  (TakeWhile(p)(xs), DropWhile(p)(xs))
+```
+
+```go
+fp.Span(func (x int) bool { return x < 4 })([]int{1, 2, 3, 4, 5})
+
+// => ([]int{1, 2, 3}, []int{4, 5})
+```
+
+## Concat
+
+Concatenates 2 arrays of the same type into a single one
+
+```go
+fp.Concat([]int{1, 2, 3, 4, 5})([]int{6, 7, 8, 9})
+
+// => []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+```
+
+## Zip
+
+Takes 2 arrays and returns an array of corresponding pairs.
+
+```go
+fp.Zip[bool]([]int{1, 2, 3})([]bool{true, false, true})
+
+// => []Pair[int, bool]{ (1, true), (2, false), (3, true) }
+```
+
+## Unzip
+
+Takes an array of pairs into a pair of arrays, where the first is an array of first components and the second is an array of second components.
+
+```go
+fp.Unzip([]Pair[int, bool]{ (1, true), (2, false), (3, true) })
+
+// => ( []int{1, 2, 3}, []bool{true, false, true} )
+```
+
+## ZipWith
+
+Generalization of `Zip` by zipping the elements of both lists with a function instead of pairing them
+
+```go
+fp.ZipWith(
+    func(x, y int) int { return x + y }
+)([]int{1, 2, 3, 4, 5})([]int{6, 7, 8})
+
+// => []int{7, 9, 11}
 ```
