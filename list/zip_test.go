@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/repeale/fp-go"
-	"github.com/repeale/fp-go/pair"
+	"github.com/force4760/fp-go"
+	"github.com/force4760/fp-go/pair"
 )
 
 func TestZip_EqLen(t *testing.T) {

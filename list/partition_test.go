@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/repeale/fp-go/pair"
+	"github.com/force4760/fp-go/pair"
 )
 
 func TestPartition(t *testing.T) {

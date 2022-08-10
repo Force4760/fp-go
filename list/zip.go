@@ -1,6 +1,6 @@
 package lst
 
-import "github.com/repeale/fp-go/pair"
+import "github.com/force4760/fp-go/pair"
 
 // Take 2 lists of A and B and merge them into a single list of Pair[A, B]
 // If the lists don't have the same size, the final list will have the same size as the smaller one

@@ -1,6 +1,6 @@
 package lst
 
-import "github.com/repeale/fp-go/pair"
+import "github.com/force4760/fp-go/pair"
 
 // Get a Pair of arrays, where the first is the longest prefix of the provided array
 // that satisfies a callback and the second is the rest of the array.

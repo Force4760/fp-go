@@ -1,9 +1,9 @@
 package lst
 
 import (
-	"github.com/repeale/fp-go"
-	opt "github.com/repeale/fp-go/option"
-	"github.com/repeale/fp-go/pair"
+	"github.com/force4760/fp-go"
+	"github.com/force4760/fp-go/opt"
+	"github.com/force4760/fp-go/pair"
 )
 
 // ( head )(---- tail -- )

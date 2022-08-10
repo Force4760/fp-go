@@ -1,6 +1,6 @@
 package lst
 
-import "github.com/repeale/fp-go/pair"
+import "github.com/force4760/fp-go/pair"
 
 // Get a Pair of arrays, where the first has all the elements that satisfy a callback
 // and the second has all the elements that don't satisty it.
