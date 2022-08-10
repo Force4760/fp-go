@@ -1,6 +1,9 @@
 package fp
 
-import opt "github.com/repeale/fp-go/option"
+import (
+	opt "github.com/repeale/fp-go/option"
+	"github.com/repeale/fp-go/pair"
+)
 
 // ( head )(---- tail -- )
 // [ 1,    2,    3,    4 ]
@@ -97,9 +100,31 @@ func Replicate[T any](n int) func(T) []T {
 		result := make([]T, n)
 
 		for i := 0; i < n; i++ {
-			result = append(result, val)
+			result[i] = val
 		}
 
 		return result
+	}
+}
+
+// Get a pair where the first element is a prefix of length n and the second element is the remainder of the slice.
+func SplitAt[T any](n int) func([]T) pair.Pair[[]T, []T] {
+	return func(xs []T) pair.Pair[[]T, []T] {
+		if n == 0 {
+			return pair.New([]T{}, xs)
+		}
+
+		if n >= len(xs) {
+			return pair.New(xs, []T{})
+		}
+
+		return pair.New(xs[:n], xs[n:])
+	}
+}
+
+// Concatenate two slices
+func Concat[T any](xs []T) func([]T) []T {
+	return func(ys []T) []T {
+		return append(xs, ys...)
 	}
 }

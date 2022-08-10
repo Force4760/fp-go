@@ -42,13 +42,13 @@ Fp-go is a collection of Functional Programming helpers powered by Golang [1.18]
   - [Replicate] (#replicate)
   
 
-  - [SplitAt] (#splitat) //////////
-  - [Span] (#span) //////////
-  - [Partition] (#elem) //////////
-  - [Concat] (#sum) //////////
-  - [ZipWith] (#zipwith) //////////
-  - [Zip] (#zip) //////////
-  - [Unzip] (#unzip) //////////
+  - [SplitAt] (#splitat)
+  - [Span] (#span)
+  - [Partition] (#elem)
+  - [Concat] (#sum)
+  - [ZipWith] (#zipwith)
+  - [Zip] (#zip)
+  - [Unzip] (#unzip)
   
 
 - [Helpers](#helpers)
@@ -430,10 +430,10 @@ fp.If(false, 2, 42) // <=>   false ? 2 : 42   =>   42
 - [ ] Either
 - [ ] Result
 - [ ] Ranges
-- [ ] Split at
+- [X] Split at
 - [ ] Span (takeWhile p, dropWhile p)
 - [ ] Partition (filter p, filter $ not . p)
-- [ ] Concat
-- [ ] ZipWith
-- [ ] Zip
-- [ ] Unzip
+- [X] Concat
+- [X] ZipWith
+- [X] Zip
+- [X] Unzip

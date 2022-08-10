@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	opt "github.com/repeale/fp-go/option"
+	"github.com/repeale/fp-go/pair"
 )
 
 func TestHead(t *testing.T) {
@@ -200,7 +201,7 @@ func TestProd_Empty(t *testing.T) {
 func TestReplicate(t *testing.T) {
 	res := Replicate[int](5)(1)
 	want := []int{1, 1, 1, 1, 1}
-	if reflect.DeepEqual(res, want) != true {
+	if !reflect.DeepEqual(res, want) {
 		t.Error("Replicate should have returned", want, ". Received:", res)
 	}
 }
@@ -240,5 +241,63 @@ func TestSafeLast_Empty(t *testing.T) {
 	res := SafeLast([]int{})
 	if !opt.Eq(res)(opt.None[int]()) {
 		t.Error("SafeLast should have returned None. Received:", res)
+	}
+}
+
+func TestSplitAt(t *testing.T) {
+	res := SplitAt[int](3)([]int{1, 2, 3, 4, 5})
+	want := pair.New([]int{1, 2, 3}, []int{4, 5})
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("SplitAt should have returned", want, ". Received:", res)
+	}
+}
+func TestSplitAt_Zero(t *testing.T) {
+	res := SplitAt[int](0)([]int{1, 2, 3, 4, 5})
+	want := pair.New([]int{}, []int{1, 2, 3, 4, 5})
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("SplitAt should have returned", want, ". Received:", res)
+	}
+}
+func TestSplitAt_Larger(t *testing.T) {
+	res := SplitAt[int](10)([]int{1, 2, 3, 4, 5})
+	want := pair.New([]int{1, 2, 3, 4, 5}, []int{})
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("SplitAt should have returned", want, ". Received:", res)
+	}
+}
+
+func TestConcat(t *testing.T) {
+	res := Concat([]int{1, 2, 3})([]int{4, 5})
+	want := []int{1, 2, 3, 4, 5}
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("Concat should have returned", want, ". Received:", res)
+	}
+}
+func TestConcat_LeftEmpty(t *testing.T) {
+	res := Concat([]int{})([]int{4, 5})
+	want := []int{4, 5}
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("Concat should have returned", want, ". Received:", res)
+	}
+}
+func TestConcat_RightEmpty(t *testing.T) {
+	res := Concat([]int{1, 2, 3})([]int{})
+	want := []int{1, 2, 3}
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("Concat should have returned", want, ". Received:", res)
+	}
+}
+func TestConcat_Empty(t *testing.T) {
+	res := Concat([]int{})([]int{})
+	want := []int{}
+
+	if !reflect.DeepEqual(res, want) {
+		t.Error("Concat should have returned", want, ". Received:", res)
 	}
 }

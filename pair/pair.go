@@ -68,13 +68,6 @@ func CheckBoth[A, B any](fnF func(A) bool, fnS func(B) bool) func(Pair[A, B]) bo
 	}
 }
 
-// Merge the elements of a Pair with a Curried function
-func MergeC[A, B, C any](fn func(A) func(B) C) func(Pair[A, B]) C {
-	return func(t Pair[A, B]) C {
-		return fn(t.a)(t.b)
-	}
-}
-
 // Merge the elements of a Pair with a non-Curried function
 func Merge[A, B, C any](fn func(A, B) C) func(Pair[A, B]) C {
 	return func(t Pair[A, B]) C {
@@ -86,20 +79,5 @@ func Merge[A, B, C any](fn func(A, B) C) func(Pair[A, B]) C {
 func Eq[A, B comparable](p1 Pair[A, B]) func(Pair[A, B]) bool {
 	return func(p2 Pair[A, B]) bool {
 		return p1.a == p2.a && p1.b == p2.b
-	}
-}
-
-// Take 2 lists of A and B and merge them into a single list of Pair[A, B]
-// If the lists don't have the same size, the final list will have the same size as the smaller one
-func Zip[B, A any](lstA []A) func([]B) []Pair[A, B] {
-	return func(lstB []B) (res []Pair[A, B]) {
-		i := 0
-
-		for i < len(lstA) && i < len(lstB) {
-			res = append(res, New(lstA[i], lstB[i]))
-			i++
-		}
-
-		return
 	}
 }
