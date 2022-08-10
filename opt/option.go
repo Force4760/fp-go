@@ -42,7 +42,7 @@ func IsNone[T any](o Option[T]) bool {
 	return !o.hasValue
 }
 
-// Extracts the value out of the Option, if it exists. Otherwise returns the function with a default value
+// Extracts the value out of the Option, if it exists. Otherwise returns a default value
 func GetOrElse[T any](onNone T) func(Option[T]) T {
 	return func(o Option[T]) T {
 
@@ -125,7 +125,7 @@ func Flat[T any](o Option[Option[T]]) Option[T] {
 	return o.value
 }
 
-// Removes one level of nesting at a time. Option[Option[T]] -> Option[T]
+// Check two Option for equality. The type must be comparable
 func Eq[T comparable](o1 Option[T]) func(Option[T]) bool {
 	return func(o2 Option[T]) bool {
 		if IsNone(o1) {
