@@ -68,19 +68,15 @@ func GetOrElseR[L, R any](def R) func(Either[L, R]) R {
 // Check two Either for equality. The types must be comparable
 func Eq[L, R comparable](e1 Either[L, R]) func(Either[L, R]) bool {
 	return func(e2 Either[L, R]) bool {
-		if IsLeft(e1) {
-			if IsLeft(e2) {
-				return e1.left == e2.left
-			}
-
-			return false
-		} else {
-			if IsRight(e2) {
-				return e1.right == e2.right
-			}
-
-			return false
+		if IsLeft(e1) && IsLeft(e2) {
+			return e1.left == e2.left
 		}
+
+		if IsRight(e1) && IsRight(e2) {
+			return e1.right == e2.right
+		}
+
+		return false
 	}
 }
 

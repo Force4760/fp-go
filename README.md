@@ -99,6 +99,6 @@ fp.MapWithSlice[int, string](func(x int, i int, xs: []int) { ... })
 
 ## TO DO
 
-- [ ] Either
+- [X] Either
 - [ ] Result
 - [ ] Ranges

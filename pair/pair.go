@@ -75,7 +75,8 @@ func Merge[A, B, C any](fn func(A, B) C) func(Pair[A, B]) C {
 	}
 }
 
-// Check two Pairs for element-by-element equality. The types must be comparable
+// Check two Pairs for element-by-element equality.
+// The types must be comparable
 func Eq[A, B comparable](p1 Pair[A, B]) func(Pair[A, B]) bool {
 	return func(p2 Pair[A, B]) bool {
 		return p1.a == p2.a && p1.b == p2.b
