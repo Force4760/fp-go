@@ -5,6 +5,7 @@
 - [Pipe](#pipe)
 - [Curry](#curry)
 - [If](#if)
+- [Id](#id)
 
 
 ## Compose
@@ -65,4 +66,12 @@ Implementation of the ternary operator.
 ```go
 fp.If(true, 42, 21) // <=>   true ? 42 : 21   =>   42
 fp.If(false, 2, 42) // <=>   false ? 2 : 42   =>   42
+```
+
+## Id
+
+Id function. Takes an argument and returns it unchanged.
+
+```go
+fp.Id(42) // => 42
 ```

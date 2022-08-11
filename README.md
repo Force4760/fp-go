@@ -4,7 +4,7 @@
 [![Go Report](https://goreportcard.com/badge/github.com/repeale/fp-go)](https://goreportcard.com/badge/github.com/repeale/fp-go)
 [![codecov](https://codecov.io/gh/repeale/fp-go/branch/main/graph/badge.svg?token=ORP8NR634Q)](https://codecov.io/gh/repeale/fp-go)
 
-Fp-go is a collection of Functional Programming helpers powered by Golang [1.18](https://tip.golang.org/doc/go1.18)+ [generics](https://tip.golang.org/doc/go1.18#generics).
+Fp-go is a collection of Functional Programming helpers powered by Golang [1.18](https://tip.golang.org/doc/go1.18)+ [generics](https://tip.golang.org/doc/go1.18#generics) created by [Repeale](https://github.com/repeale)
 
 <p align="center">
   <img 
@@ -28,6 +28,8 @@ Fp-go is a collection of Functional Programming helpers powered by Golang [1.18]
   - [Lists](./docs/list.md)
   - [Option](./docs/option.md)
   - [Pair](./docs/pair.md)
+  - [Either](./docs/either.md)
+  - [Result](./docs/result.md)
 
 ---
 
@@ -36,7 +38,7 @@ Fp-go is a collection of Functional Programming helpers powered by Golang [1.18]
 Requires go 1.18+
 
 ```sh
-go get github.com/repeale/fp-go
+go get github.com/force4760/fp-go
 ```
 
 ---
@@ -100,5 +102,5 @@ fp.MapWithSlice[int, string](func(x int, i int, xs: []int) { ... })
 ## TO DO
 
 - [X] Either
-- [ ] Result
+- [X] Result
 - [ ] Ranges
