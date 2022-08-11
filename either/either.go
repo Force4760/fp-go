@@ -43,6 +43,28 @@ func IsRightAnd[L, R any](fn func(R) bool) func(Either[L, R]) bool {
 	}
 }
 
+// Extracts the left value out of the Either, if it exists. Otherwise returns a default value.
+func GetOrElseL[R, L any](def L) func(Either[L, R]) L {
+	return func(e Either[L, R]) L {
+		if IsLeft(e) {
+			return e.left
+		}
+
+		return def
+	}
+}
+
+// Extracts the right value out of the Either, if it exists. Otherwise returns a default value.
+func GetOrElseR[L, R any](def R) func(Either[L, R]) R {
+	return func(e Either[L, R]) R {
+		if IsRight(e) {
+			return e.right
+		}
+
+		return def
+	}
+}
+
 // Check two Either for equality. The types must be comparable
 func Eq[L, R comparable](e1 Either[L, R]) func(Either[L, R]) bool {
 	return func(e2 Either[L, R]) bool {
@@ -62,14 +84,84 @@ func Eq[L, R comparable](e1 Either[L, R]) func(Either[L, R]) bool {
 	}
 }
 
-// mapR :: (R -> T) -> Either L R -> Either L T
-// mapL :: (L -> T) -> Either L R -> Either T R
-// flatMapR :: (R -> Either L T) -> Either L R -> Either L T
-// flatMapL :: (L -> Either T R) -> Either L R -> Either T R
-// flat
-// getROrElse :: R -> Either L R -> R
-// getLOrElse :: L -> Either L R -> L
-// flip :: Either L R -> Either R L
-// match :: (L -> T) -> (R -> T) -> Either L R -> T
-// isLeftAnd :: (L -> Bool) -> Either L R -> Bool
-// isRightAnd :: (R -> Bool) -> Either L R -> Bool
+// Switch the types of Either: Either[L, R] -> Either[R, L]
+func Flip[L, R any](e Either[L, R]) Either[R, L] {
+	if IsLeft(e) {
+		return Right[R](e.left)
+	}
+
+	return Left[L](e.right)
+}
+
+// Extracts the value out of the Either with the onLeft function if it is Left and with the onRight function if it is Right
+func Match[L, R, T any](onLeft func(L) T, onRight func(R) T) func(Either[L, R]) T {
+	return func(e Either[L, R]) T {
+		if IsLeft(e) {
+			return onLeft(e.left)
+		}
+
+		return onRight(e.right)
+	}
+}
+
+// Execute the function on the Left value if it exists. Otherwise return the Right itself
+func MapL[R, L, T any](fn func(L) T) func(Either[L, R]) Either[T, R] {
+	return func(e Either[L, R]) Either[T, R] {
+		if IsLeft(e) {
+			return Left[R](fn(e.left))
+		}
+
+		return Right[T](e.right)
+	}
+}
+
+// Execute the function on the Right value if it exists. Otherwise return the Left itself
+func MapR[L, R, T any](fn func(R) T) func(Either[L, R]) Either[L, T] {
+	return func(e Either[L, R]) Either[L, T] {
+		if IsRight(e) {
+			return Right[L](fn(e.right))
+		}
+
+		return Left[T](e.left)
+	}
+}
+
+// Extracts the left value of the Either with a function, if it exists. Otherwise returns the right value.
+func ChainL[L, R, T any](fn func(L) Either[T, R]) func(Either[L, R]) Either[T, R] {
+	return func(e Either[L, R]) Either[T, R] {
+		if IsRight(e) {
+			return Right[T](e.right)
+		}
+
+		return fn(e.left)
+	}
+}
+
+// Extracts the right value of the Either with a function, if it exists. Otherwise returns the left value.
+func ChainR[L, R, T any](fn func(R) Either[L, T]) func(Either[L, R]) Either[L, T] {
+	return func(e Either[L, R]) Either[L, T] {
+		if IsLeft(e) {
+			return Left[T](e.left)
+		}
+
+		return fn(e.right)
+	}
+}
+
+// Removes one level of nesting on the left value
+func FlatL[L, R any](e Either[Either[L, R], R]) Either[L, R] {
+	if IsRight(e) {
+		return Right[L](e.right)
+	}
+
+	return e.left
+}
+
+// Removes one level of nesting on the right value
+func FlatR[L, R any](e Either[L, Either[L, R]]) Either[L, R] {
+	if IsLeft(e) {
+		return Left[R](e.left)
+	}
+
+	return e.right
+}

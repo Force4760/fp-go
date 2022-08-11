@@ -22,11 +22,12 @@ Fp-go is a collection of Functional Programming helpers powered by Golang [1.18]
   - [Currying](#currying)
   - [Variations](#variations)
 
+- [Helpers](./docs/helpers.md)
+
 - Types
   - [Lists](./docs/list.md)
   - [Option](./docs/option.md)
   - [Pair](./docs/pair.md)
-  - [Helpers](./docs/helpers.md)
 
 ---
 
