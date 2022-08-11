@@ -6,6 +6,8 @@
 
 Fp-go is a collection of Functional Programming helpers powered by Golang [1.18](https://tip.golang.org/doc/go1.18)+ [generics](https://tip.golang.org/doc/go1.18#generics) created by [Repeale](https://github.com/repeale)
 
+This version was created as I needed more types for my projects, but most of the code (mainly on the slice functions) comes from the original version created by Repeale. Make sure to check it out. 
+
 <p align="center">
   <img 
     width="500"
