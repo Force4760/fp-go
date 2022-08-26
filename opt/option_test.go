@@ -93,6 +93,22 @@ func TestGetOrElse_None(t *testing.T) {
 	}
 }
 
+func TestGet_Some(t *testing.T) {
+	res := Get(Some("val"))
+	if res != "val" {
+		t.Error("Get should return the Some value. Received:", res)
+	}
+}
+func TestGet_None(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("Get should have raised a panic.")
+		}
+	}()
+
+	_ = Get(None[int]())
+}
+
 func TestToPtr_Some(t *testing.T) {
 	res := ToPtr(Some("val"))
 	if *res != "val" {
